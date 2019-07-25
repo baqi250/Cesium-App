@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cesium App</title>
+    <script src="scripts/Cesium/Cesium.js"></script>
+    <style>
+         @import url(scripts/Cesium/Widgets/widgets.css);
+        html, body {
+            height: 100%;
+            width: 100%;
+            margin: 0px;
+            padding: 0px;
+        }
+        #cesiumContainer{
+            height: 100%;
+            width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="cesiumContainer"></div>
+    <script>
+        //加载谷歌卫星影像
+        var url = "http://mt1.google.cn/vt/lyrs=s&hl=zh-CN&x={x}&y={y}&z={z}&s=Gali";
+        var google=new Cesium.UrlTemplateImageryProvider({url:url})
+        var viewer = new Cesium.Viewer('cesiumContainer',{
+            baseLayerPicker:false,
+            imageryProvider:google,
+            terrainProvider : Cesium.createWorldTerrain({
+                requestWaterMask : true,
+                requestVertexNormals : true
+            }),
+        });
+    </script>
+</body>
+</html>
